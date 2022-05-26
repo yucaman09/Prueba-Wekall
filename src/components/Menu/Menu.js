@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, {useEffect} from "react";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-export default class Menu extends Component {
-  cerrarSesion = () => {
+export const Menu = () => {
+
+  const logOut = () => {
     cookies.remove("id", { path: "/" });
     cookies.remove("apellido_paterno", { path: "/" });
     cookies.remove("apellido_materno", { path: "/" });
@@ -12,20 +13,23 @@ export default class Menu extends Component {
     cookies.remove("username", { path: "/" });
     window.location.href = "./";
   };
-  
-  componentDidMount() {
+
+  useEffect(() => {
     if (!cookies.get("username")) {
       window.location.href = "./";
     }
-  }
+  
+  }, [])
+  
 
-  render() {
-    return (
-      <div>
+  return (
+    <>
+      <h2>
         Menu Principal
-        <br />
-        <button onClick={() => this.cerrarSesion()}>Cerrar Sesion</button>
-      </div>
-    );
-  }
+      </h2>
+      <br />
+      <button onClick={logOut}>Cerrar Sesion</button>
+    </>
+  );
+
 }

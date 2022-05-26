@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Login from '../pages/Login';
-import Menu from '../pages/Menu';
+import { Login } from '../components/Login/Login';
+import { Menu } from '../components/Menu/Menu';
+import { AuthScreen } from '../screens/authScreen/authScreen';
+
 
 function RoutesComponent() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/menu" element={<Menu/>} />
+        <Route path="/" element={<AuthScreen />} />
+        <Route path="/menu" element={<Menu />} />
       </Routes>
     </Router>
   );
